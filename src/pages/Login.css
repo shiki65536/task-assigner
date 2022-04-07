@@ -1,0 +1,9 @@
+.message {
+    text-align: center;
+}
+.message button {
+    border: 0;
+    padding: 0 2rem;
+    margin: 0 0.5rem;
+    border-radius: var(--radius);
+}

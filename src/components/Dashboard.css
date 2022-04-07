@@ -1,0 +1,52 @@
+.dashboard {
+  background: var(--grey-10);
+  padding: 2rem;
+}
+
+.projects {
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-gap: 20px;
+}
+
+.project-filter {
+  margin: 10px auto;
+}
+
+@media screen and (min-width: 768px) {
+  .project-filter button {
+    margin: 1rem;
+    padding: 0.5rem;
+  }
+}
+
+.project-filter nav {
+  display: flex;
+  padding: 10px;
+  border-radius: 4px;
+  justify-content: center;
+
+}
+
+.project-filter p {
+  font-size: 0.9em;
+  margin-right: 10px;
+  display: inline-block;
+  margin-top: 1.5rem;
+}
+
+.project-filter button {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  font-size: 0.9em;
+  margin: 0.5rem;
+  padding: 0.25rem;
+  border-radius: var(--radius);
+}
+
+.project-filter button.active {
+  color: var(--white);
+  background-color: var(--grey-8);
+}
