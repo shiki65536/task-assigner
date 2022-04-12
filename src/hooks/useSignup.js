@@ -1,7 +1,7 @@
 import { db, auth, storage } from '../firebase/config';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { updateProfile, createUserWithEmailAndPassword } from "firebase/auth";
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, setDoc, doc } from 'firebase/firestore';
 import useAuthContext from './useAuthContext';
 import {useState} from 'react';
 
@@ -23,7 +23,7 @@ function useSignup() {
       const imgUrl = await getDownloadURL(ref(storage, `thumbnails/${res.user.uid}/${thumbnail.name}`));
       const updateUser = await updateProfile(auth.currentUser, { displayName, photoURL: imgUrl });
 
-      const userAdd = await addDoc(collection(db, 'users'), {
+      const userAdd = await setDoc(doc(db, `users/${res.user.uid}`), {
         displayName,
         photoURL: imgUrl,
       });

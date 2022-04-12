@@ -3,9 +3,11 @@ import './Dashboard.css'
 import ProjectList from './ProjectList';
 import useCollection from '../hooks/useCollection';
 import DashboardFilter from './DashboardFilter';
+import useAuthContext from '../hooks/useAuthContext';
 
 function Dashboard() {
   const { collections } = useCollection('projects');
+  const { user } = useAuthContext();
   const [filter, setFilter] = useState('all')
 
   const changeFilter = (newFilter) => {
@@ -16,6 +18,15 @@ function Dashboard() {
     switch(filter) {
       case 'all':
         return true;
+      case 'mine':
+        let assignedToMe = false
+        collection.assignedList.forEach(u => {
+          if(user){
+            if (u.id === user.uid) {
+            assignedToMe = true
+          }}
+        })
+        return assignedToMe
       case 'development':
       case 'design':
       case 'sales':
@@ -37,13 +48,6 @@ function Dashboard() {
       {!projects ? null :
        projects.map(project => <ProjectList key={project.id} project={project} />)}          
         </div>
-
-
-
-      {/* 
-        {!collections ? null :
-          collections.map(collection => <ProjectList key={collection.id} project={collection} />)}
-      */}
     </div>
 
   )

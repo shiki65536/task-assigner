@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const filterList = ['all', 'development', 'design', 'marketing', 'sales']
+const filterList = ['all', 'mine', 'development', 'design', 'marketing', 'sales']
 
 function DashboardFilter({changeFilter}) {
     const [currentFilter, setCurrentFilter] = useState('all')

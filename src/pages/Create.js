@@ -16,7 +16,7 @@ function Create() {
     const { addStore } = useFirestore();
     const { collections } = useCollection('users');
     const { user} = useAuthContext();
-    const [createdBy, setCreatedBy]= useState({})
+    // const [createdBy, setCreatedBy]= useState({})
     const [members, setMembers] = useState([]);
     const [assignList, setAssignList] = useState([])
     const navigate = useNavigate();
@@ -41,16 +41,13 @@ function Create() {
         }
       })
 
-    useEffect (()=>{
-        if(user){
-            setCreatedBy({displayName: user.displayName,photoURL: user.photoURL, id: user.uid})
-        }
-    },[user])
+    const createdBy = {displayName: user.displayName,photoURL: user.photoURL, id: user.uid}
 
     useEffect(()=>{       
+        if(collections){
         setMembers(collections.map( user=>  {
             return {value:{...user, id: user.id}, label: user.displayName}
-        }));
+        }));}
     }, [collections])
 
     return (
