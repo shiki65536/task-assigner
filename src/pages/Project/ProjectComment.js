@@ -12,7 +12,8 @@ function ProjectComment({ setStore, user, id }) {
     const handleComment = (e) => {
         e.preventDefault();
         setStore('projects', id, msgCommentor, boardMsg);
-        navigate(`/project/${id}`)
+        setBoardMsg('');
+        navigate(`/project/${id}`);
     }
 
     useEffect(() => {
